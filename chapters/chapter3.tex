@@ -206,6 +206,8 @@ Generally, I construct my pipeline in the following manner. Firstly, I need to g
 
 An important detail in the search process is to track the timestamp of a similar commit and the similarity of embeddings.  During the training process, the model takes a sample from the search database. Therefore, the most similar commit will always be its exact copy with the real commit message, as we have its copy in the search space. This behaviour will break the logic behind the method and lead our model to overfit, thus we should handle this situation and consider a threshold on the similarity for it not to be too big. One more restriction on the similar commit search is the timestamp of the retrieved sample. In the training phase model must not have access to the commits from the future.  This may cause a situation of retrieving the future commit from the same repository, changing the same piece of code, and leading the model to overfitting. Therefore I restricted my search space to the most similar sample with the similarity threshold and commits made only before the input one.  
 
+With the help of the retrieved commit message and the history of the previous commits from the repository, I'm constructing the input in the format described above. These modifications will enhance the generated commit message adaptation to the repository's overall style and code change themes, thereby improving the text-matching metrics.
+
 
 
 
