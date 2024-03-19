@@ -1,0 +1,17 @@
+[0] Config.pm:307> INFO - This is Biber 2.19
+[0] Config.pm:310> INFO - Logfile is 'thesis.blg'
+[179] biber:340> INFO - === Вт мар 19, 2024, 01:40:21
+[210] Biber.pm:419> INFO - Reading 'thesis.bcf'
+[366] Biber.pm:979> INFO - Found 19 citekeys in bib section 0
+[404] Biber.pm:4419> INFO - Processing section 0
+[426] Biber.pm:4610> INFO - Looking for bibtex file 'ref.bib' for section 0
+[429] bibtex.pm:1713> INFO - LaTeX decoding ...
+[479] bibtex.pm:1519> INFO - Found BibTeX data source 'ref.bib'
+[975] UCollate.pm:68> INFO - Overriding locale 'en-US' defaults 'normalization = NFD' with 'normalization = prenormalized'
+[975] UCollate.pm:68> INFO - Overriding locale 'en-US' defaults 'variable = shifted' with 'variable = non-ignorable'
+[975] Biber.pm:4239> INFO - Sorting list 'none/global//global/global' of type 'entry' with template 'none' and locale 'en-US'
+[975] Biber.pm:4245> INFO - No sort tailoring available for locale 'en-US'
+[1009] bbl.pm:660> INFO - Writing 'thesis.bbl' with encoding 'UTF-8'
+[1032] bbl.pm:763> INFO - Output to thesis.bbl
+[1033] Biber.pm:131> WARN - BibTeX subsystem: /tmp/biber_tmp_ZC4c/e800e2552f53b910154f366d4c3730d7_224163.utf8, line 73, warning: 55 characters of junk seen at toplevel
+[1033] Biber.pm:133> INFO - WARNINGS: 1
