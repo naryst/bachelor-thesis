@@ -33,17 +33,19 @@
 \contentsline {subsection}{\numberline {3.8.1}Retrieval approaches}{31}{subsection.3.8.1}%
 \contentsline {subsection}{\numberline {3.8.2}My experiment with retrieval}{32}{subsection.3.8.2}%
 \contentsline {section}{\numberline {3.9}Possible way to resolve limited context window problem}{34}{section.3.9}%
-\contentsline {section}{\numberline {3.10}Metrics to evaluate CMG results}{34}{section.3.10}%
-\contentsline {subsection}{\numberline {3.10.1}BLEU score description}{35}{subsection.3.10.1}%
-\contentsline {subsection}{\numberline {3.10.2}BERTScore description}{37}{subsection.3.10.2}%
-\contentsline {chapter}{\numberline {4}Implementation}{40}{chapter.4}%
-\contentsline {section}{\numberline {4.1}Vanila CodeT5+ training details}{40}{section.4.1}%
-\contentsline {section}{\numberline {4.2}CodeT5+ with retrieval training results}{40}{section.4.2}%
-\contentsline {section}{\numberline {4.3}CodeT5+ with file attention training results}{40}{section.4.3}%
-\contentsline {section}{\numberline {4.4}Analysis of BERTscore metric}{40}{section.4.4}%
-\contentsline {chapter}{\numberline {5}Evaluation and Discussion}{41}{chapter.5}%
-\contentsline {section}{\numberline {5.1}Models performance analysis}{41}{section.5.1}%
-\contentsline {section}{\numberline {5.2}Models speed analysis}{41}{section.5.2}%
-\contentsline {chapter}{\numberline {6}Conclusion}{42}{chapter.6}%
-\contentsline {section}{\numberline {6.1}Future work}{42}{section.6.1}%
-\contentsline {chapter}{Bibliography cited}{43}{chapter*.14}%
+\contentsline {subsection}{\numberline {3.9.1}Efficient handling of big commits}{35}{subsection.3.9.1}%
+\contentsline {subsection}{\numberline {3.9.2}Model architecture}{36}{subsection.3.9.2}%
+\contentsline {section}{\numberline {3.10}Metrics to evaluate CMG results}{36}{section.3.10}%
+\contentsline {subsection}{\numberline {3.10.1}BLEU score description}{36}{subsection.3.10.1}%
+\contentsline {subsection}{\numberline {3.10.2}BERTScore description}{38}{subsection.3.10.2}%
+\contentsline {chapter}{\numberline {4}Implementation}{42}{chapter.4}%
+\contentsline {section}{\numberline {4.1}Vanila CodeT5+ training details}{42}{section.4.1}%
+\contentsline {section}{\numberline {4.2}CodeT5+ with retrieval training results}{42}{section.4.2}%
+\contentsline {section}{\numberline {4.3}CodeT5+ with file attention training results}{42}{section.4.3}%
+\contentsline {section}{\numberline {4.4}Analysis of BERTscore metric}{42}{section.4.4}%
+\contentsline {chapter}{\numberline {5}Evaluation and Discussion}{43}{chapter.5}%
+\contentsline {section}{\numberline {5.1}Models performance analysis}{43}{section.5.1}%
+\contentsline {section}{\numberline {5.2}Models speed analysis}{43}{section.5.2}%
+\contentsline {chapter}{\numberline {6}Conclusion}{44}{chapter.6}%
+\contentsline {section}{\numberline {6.1}Future work}{44}{section.6.1}%
+\contentsline {chapter}{Bibliography cited}{45}{chapter*.14}%

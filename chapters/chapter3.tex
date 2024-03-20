@@ -208,12 +208,14 @@ An important detail in the search process is to track the timestamp of a similar
 
 With the help of the retrieved commit message and the history of the previous commits from the repository, I'm constructing the input in the format described above. These modifications will enhance the generated commit message adaptation to the repository's overall style and code change themes, thereby improving the text-matching metrics.
 
-
-
-
-
 \section{Possible way to resolve limited context window problem}\label{sec:file_attention_arch}
-TODO
+Another problem with generating commit messages is the limited context window of the transformer-based models.  As stated in~\cite{vaswani2017attention}, the self-attention mechanism {-} the core module of all the transformers {-} has quadratic time complexity. For example, a model that I used in the previous experiments {-} CodeT5+ can handle only sequences with up to 512 tokens in the input. This amount is insufficient to handle a large commit that includes changes of multiple files. One possible way to mitigate this limitation is to use a larger model. For example, the mistral model presented in~\cite{jiang2023mistral} has a maximum context length of 8192 tokens. However, the problem with this solution is that this model has 7 billion parameters, compared with 220 million in CodeT5+. 
+CMG is a relatively simple task since generated messages are not that varied. According to my analysis of the data from~\ref{sec:data_analysis} in general, most of the commit messages have almost the same structure.    Thus, the inference speed of the used model should be high. And with the larger model, I will lose the performance in terms of the speed too much. That is why I decided to handle big commits more efficiently in another way.
+
+\subsection{Efficient handling of big commits}
+My idea of handling big commits consists of the following. In most cases, big commits involve changes in multiple files. Each file in the commit is relatively simple and can be processed by the codeT5+ model. Therefore, if I get the embedding of each file separately, I will have the full context of the commits after the encoder. Suppose we have a commit with modifications in 5 code files. Firstly, I separately pass each file to the encoder part of my model. Even if some of the files are too big and can not fit into the context window, I will extract the information from the beginning of the changes and get the general goal of the commit. At the same time, passing the whole commit as a text will lead to the truncation of the data. It is possible to exclude some files from the model input, which may lead to the loss of information about the commit goal. Before passing the separate embeddings of modification files to the decoder, I need to aggregate them to match the shape of the hidden encoder representation with the standard one. For this purpose, I use the weighted average of the embeddings. These weights for each embedding represent the importance of certain file changes for the general changes made in the commit. The importance score for each file is trainable parameters. I get them through the additional module between the encoder and decoder part of the model.
+
+\subsection{Model architecture}
 
 \section{Metrics to evaluate CMG results}
 In the literature review section, I have described the most popular metrics to measure the performance of the models in terms of generated commit message quality~\ref{sec:eval_metrics}. For my experiments, I used bath metrics described in the literature review. BLEU for the syntax similarity and BERTScore to access the semantic similarity with the original commit message. In this chapter, I aim to give an extensive definition of these metrics and the intuition behind them.

@@ -2400,14 +2400,16 @@
     <bcf:citekey order="29" intorder="1">eliseeva2023commit</bcf:citekey>
     <bcf:citekey order="30" intorder="1">eliseeva2023commit</bcf:citekey>
     <bcf:citekey order="31" intorder="1">shi2022race</bcf:citekey>
-    <bcf:citekey order="32" intorder="1">papineni2002bleu</bcf:citekey>
-    <bcf:citekey order="33" intorder="1">post2018call</bcf:citekey>
-    <bcf:citekey order="34" intorder="1">tao2021evaluation</bcf:citekey>
-    <bcf:citekey order="35" intorder="1">eliseeva2023commit</bcf:citekey>
-    <bcf:citekey order="36" intorder="1">eliseeva2023commit</bcf:citekey>
-    <bcf:citekey order="37" intorder="1">zhang2019bertscore</bcf:citekey>
-    <bcf:citekey order="38" intorder="1">devlin2018bert</bcf:citekey>
-    <bcf:citekey order="39" intorder="1">he2021deberta</bcf:citekey>
+    <bcf:citekey order="32" intorder="1">vaswani2017attention</bcf:citekey>
+    <bcf:citekey order="33" intorder="1">jiang2023mistral</bcf:citekey>
+    <bcf:citekey order="34" intorder="1">papineni2002bleu</bcf:citekey>
+    <bcf:citekey order="35" intorder="1">post2018call</bcf:citekey>
+    <bcf:citekey order="36" intorder="1">tao2021evaluation</bcf:citekey>
+    <bcf:citekey order="37" intorder="1">eliseeva2023commit</bcf:citekey>
+    <bcf:citekey order="38" intorder="1">eliseeva2023commit</bcf:citekey>
+    <bcf:citekey order="39" intorder="1">zhang2019bertscore</bcf:citekey>
+    <bcf:citekey order="40" intorder="1">devlin2018bert</bcf:citekey>
+    <bcf:citekey order="41" intorder="1">he2021deberta</bcf:citekey>
   </bcf:section>
   <!-- SORTING TEMPLATES -->
   <bcf:sortingtemplate name="none">

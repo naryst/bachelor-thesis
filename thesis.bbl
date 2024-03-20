@@ -820,6 +820,75 @@
       \field{pages}{1\bibrangedash 30}
       \range{pages}{30}
     \endentry
+    \entry{jiang2023mistral}{article}{}
+      \true{moreauthor}
+      \true{morelabelname}
+      \name{author}{10}{}{%
+        {{hash=a91e014a59af240c37c0fc26432a125b}{%
+           family={Jiang},
+           familyi={J\bibinitperiod},
+           given={Albert\bibnamedelima Q},
+           giveni={A\bibinitperiod\bibinitdelim Q\bibinitperiod}}}%
+        {{hash=2b9ab922e693d9237ad952a8030eee9d}{%
+           family={Sablayrolles},
+           familyi={S\bibinitperiod},
+           given={Alexandre},
+           giveni={A\bibinitperiod}}}%
+        {{hash=e9a587c57b1dcb4834850800386d8aca}{%
+           family={Mensch},
+           familyi={M\bibinitperiod},
+           given={Arthur},
+           giveni={A\bibinitperiod}}}%
+        {{hash=5d11905f79ca61f62a93a43574139850}{%
+           family={Bamford},
+           familyi={B\bibinitperiod},
+           given={Chris},
+           giveni={C\bibinitperiod}}}%
+        {{hash=d61a282b0086c5c4d52c371e7c748278}{%
+           family={Chaplot},
+           familyi={C\bibinitperiod},
+           given={Devendra\bibnamedelima Singh},
+           giveni={D\bibinitperiod\bibinitdelim S\bibinitperiod}}}%
+        {{hash=af4c75452e1c1c77b8727f6dace64a42}{%
+           family={Casas},
+           familyi={C\bibinitperiod},
+           given={Diego\bibnamedelimb de\bibnamedelima las},
+           giveni={D\bibinitperiod\bibinitdelim d\bibinitperiod\bibinitdelim l\bibinitperiod}}}%
+        {{hash=dafbd4ebc73fd986f482b5cb24ed701d}{%
+           family={Bressand},
+           familyi={B\bibinitperiod},
+           given={Florian},
+           giveni={F\bibinitperiod}}}%
+        {{hash=a9285c2c0cdc863e02225039176bb017}{%
+           family={Lengyel},
+           familyi={L\bibinitperiod},
+           given={Gianna},
+           giveni={G\bibinitperiod}}}%
+        {{hash=56509a94ba6cdaf0c71304d6cf806cee}{%
+           family={Lample},
+           familyi={L\bibinitperiod},
+           given={Guillaume},
+           giveni={G\bibinitperiod}}}%
+        {{hash=1c3686dfd5bade81bcfe2f5c89d70465}{%
+           family={Saulnier},
+           familyi={S\bibinitperiod},
+           given={Lucile},
+           giveni={L\bibinitperiod}}}%
+      }
+      \strng{namehash}{498eb97d1d6c996f3269485b3625872f}
+      \strng{fullhash}{a4de410ef4d31ee762a947028055bdcb}
+      \strng{bibnamehash}{498eb97d1d6c996f3269485b3625872f}
+      \strng{authorbibnamehash}{498eb97d1d6c996f3269485b3625872f}
+      \strng{authornamehash}{498eb97d1d6c996f3269485b3625872f}
+      \strng{authorfullhash}{a4de410ef4d31ee762a947028055bdcb}
+      \field{sortinit}{3}
+      \field{sortinithash}{ad6fe7482ffbd7b9f99c9e8b5dccd3d7}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{arXiv preprint arXiv:2310.06825}
+      \field{title}{Mistral 7B}
+      \field{year}{2023}
+    \endentry
     \entry{post2018call}{article}{}
       \name{author}{1}{}{%
         {{hash=899c6d51f111ea74e9147607e543cc68}{%
@@ -871,8 +940,8 @@
       \strng{authorbibnamehash}{381b088f80a810a4a1647747b81781e8}
       \strng{authornamehash}{f32978e0c4a043f9561c216ead3bce5f}
       \strng{authorfullhash}{381b088f80a810a4a1647747b81781e8}
-      \field{sortinit}{3}
-      \field{sortinithash}{ad6fe7482ffbd7b9f99c9e8b5dccd3d7}
+      \field{sortinit}{4}
+      \field{sortinithash}{9381316451d1b9788675a07e972a12a7}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{booktitle}{International Conference on Learning Representations}
