@@ -120,6 +120,10 @@
    \begin{flushleft}\raggedleft #1\end{flushleft}
 }
 
+\makeatletter
+\newcommand*{\rom}[1]{\expandafter\@slowromancap\romannumeral #1@}
+\makeatother
+
 \usepackage{silence}
 \WarningFilter{latexfont}{Font shape `T2A/pcr/m/n' undefined}
 \usepackage{tabularx} % Include this in your preamble

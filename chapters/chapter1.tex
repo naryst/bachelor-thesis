@@ -1,7 +1,19 @@
 \chapter{Introduction}\label{chap:intro}
 
-\section{What is commit message}
+\textbf{Methods:} The given task can be formulated as code2text language modelling. And the most popular method for this at the moment is fine-tuning transformer-based encoder-only Large Language Models (LLM) for the given task. So in my work I have fine-tuned LLM, pre-trained it on the massive code data and compared this solution with the existing ones. And to deal with the problem of long context, I used methods that allow to extract useful information from the long data sequences and pass it to the model input instead of the raw code context.
 
-\section{Why it is important to wrtite descriptive commit messages?}
+\textbf{Results:} Using encoder-only model with much more parameters improved the result of generating commit messages. Methods for extracting embeddings from the code and using them instead of the raw code give an improvement in terms of the meaning of the result. However, the computation time for commit message generation increased due to the size of the model.
 
-\section{Why the system for automatic commit messages generation might be helpfull?}
+\textbf{Contribution and applicability:} The methods proposed in this work increase the performance in the CMG task, but at the same time the time efficiency of the solution became worse. And the problem of finding a balance between running time and prediction quality requires future work.
+
+\section{Problem statement}
+In software development, commit is an operation that captures the current state of a project's files. It creates a snapshot of code modifications in the project, allowing developers to record their progress. Commits enable the tracking of specific changes, rolling back to previous states, and collaborating within a team of developers.
+A commit message is a brief description attached to each commit, explaining the changes made. This message is critical for understanding the purpose of the changes. Most of the time manual writing of commit messages is a tedious task and may take up to several minutes of developer time. 
+
+The task of automatically generating commit messages is the perspective research topic. Writing concise commit messages is a crucial task in the software development process. They serve as a valuable tool for developers to track changes in the project and to collaborate effectively. Despite this, a significant proportion of commit messages in open source are under-informative. State-of-the-art approaches to commit message generation (CMG) show promising results. However, most current research proposes methods that involve training encoder-decoder transformer-based models for this task. And one of the limitations of current CMG methods is the inability to handle the full context of code changes for the big commits, due to the limited context window of the model.
+
+\section{Methods}
+Analyzing the literature on the topic of automatic commit messages generation I concluded that most of the modern deep learning methods can be divided into two main groups: (\rom{1}) Ones that utilise the structured format of code dependencies and use graph neural networks to get an embedded representation of code changes. (\rom{2}) Approaches that consider the generation of commit messages as a neural machine translation seq2seq task, take code changes as unstructured text, and solve the task with causal language modeling objective. 
+
+
+\section{Work objective}
