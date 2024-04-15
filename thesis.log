@@ -1,10 +1,10 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024/Arch Linux) (preloaded format=pdflatex 2024.3.26)  27 MAR 2024 23:36
+This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024/Arch Linux) (preloaded format=pdflatex 2024.3.26)  16 APR 2024 01:42
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
  %&-line parsing enabled.
-**/home/nikita/thesis_tex/thesis_template/thesis.tex
-(/home/nikita/thesis_tex/thesis_template/thesis.tex
+**/home/nikita/thesis/thesis.tex
+(/home/nikita/thesis/thesis.tex
 LaTeX2e <2023-11-01> patch level 1
 L3 programming layer <2024-02-20>
 (/usr/share/texmf-dist/tex/latex/extsizes/extreport.cls
@@ -2115,7 +2115,7 @@ Package hyperref Info: Link coloring ON on input line 131.
 
 
 pdfTeX warning: pdflatex (file ./title.pdf): PDF inclusion: found PDF version <1.7>, but at most version <1.5> allowed
-<title.pdf, id=205, 597.55246pt x 845.07718pt>
+<title.pdf, id=221, 597.55246pt x 845.07718pt>
 File: title.pdf Graphic file (type pdf)
 <use title.pdf>
 Package pdftex.def Info: title.pdf  used on input line 134.
@@ -2133,7 +2133,7 @@ pdfTeX warning: pdflatex (file ./title.pdf): PDF inclusion: found PDF version <1
 
 
 pdfTeX warning: pdflatex (file ./title.pdf): PDF inclusion: found PDF version <1.7>, but at most version <1.5> allowed
-<title.pdf, id=208, page=1, 597.55246pt x 845.07718pt>
+<title.pdf, id=224, page=1, 597.55246pt x 845.07718pt>
 File: title.pdf Graphic file (type pdf)
 <use title.pdf, page 1>
 Package pdftex.def Info: title.pdf , page1 used on input line 134.
@@ -2219,32 +2219,31 @@ LaTeX Font Info:    Font shape `T2A/Tempora-TLF/m/n' will be
 (Font)              scaled to size 29.86pt on input line 1.
 LaTeX Font Info:    Font shape `T2A/Tempora-TLF/b/n' will be
 (Font)              scaled to size 29.86pt on input line 1.
+LaTeX Font Info:    Font shape `T2A/Tempora-TLF/m/n' will be
+(Font)              scaled to size 20.74pt on input line 3.
+LaTeX Font Info:    Font shape `T2A/Tempora-TLF/b/n' will be
+(Font)              scaled to size 20.74pt on input line 3.
 [7
 
 
 
 
-]
-LaTeX Font Info:    Font shape `T2A/Tempora-TLF/m/n' will be
-(Font)              scaled to size 20.74pt on input line 9.
-LaTeX Font Info:    Font shape `T2A/Tempora-TLF/b/n' will be
-(Font)              scaled to size 20.74pt on input line 9.
- [8]) [9]
+] [8] [9]) [10]
 \openout2 = `chapters/chapter2.aux'.
 
  (./chapters/chapter2.tex
 Chapter 2.
-[10
+[11
 
 
 
 
-] [11]
+] [12]
 LaTeX Font Info:    Font shape `T2A/Tempora-TLF/m/n' will be
 (Font)              scaled to size 17.28pt on input line 24.
 LaTeX Font Info:    Font shape `T2A/Tempora-TLF/b/n' will be
 (Font)              scaled to size 17.28pt on input line 24.
- [12] [13]
+ [13] [14]
 LaTeX Font Info:    Trying to load font information for TS1+Tempora-TLF on input line 41.
  (/usr/share/texmf-dist/tex/latex/tempora/TS1Tempora-TLF.fd
 File: TS1Tempora-TLF.fd 2016/02/02 (autoinst) Font definitions for TS1/Tempora-TLF.
@@ -2255,12 +2254,12 @@ LaTeX Font Info:    Font shape `T2A/Tempora-TLF/b/n' will be
 (Font)              scaled to size 10.0pt on input line 41.
 LaTeX Font Info:    Font shape `T2A/Tempora-TLF/m/n' will be
 (Font)              scaled to size 10.0pt on input line 41.
- [14{/usr/share/texmf-dist/fonts/enc/dvips/tempora/tmp_ac5xuc.enc}] [15] [16] [17]) [18] [19]
+ [15{/usr/share/texmf-dist/fonts/enc/dvips/tempora/tmp_ac5xuc.enc}] [16] [17] [18]) [19] [20]
 \openout2 = `chapters/chapter3.aux'.
 
  (./chapters/chapter3.tex
 Chapter 3.
-[20
+[21
 
 
 
@@ -2272,25 +2271,25 @@ LaTeX Font Info:    Font shape `T2A/Tempora-TLF/m/n' will be
 (Font)              scaled to size 7.0pt on input line 11.
 LaTeX Font Info:    Trying to load font information for T2A+pcr on input line 11.
 LaTeX Font Info:    No file T2Apcr.fd. on input line 11.
- [21] [22]
-<figs/Commits distribution.png, id=444, 1445.4pt x 722.7pt>
+ [22] [23]
+<figs/Commits distribution.png, id=476, 1445.4pt x 722.7pt>
 File: figs/Commits distribution.png Graphic file (type png)
 <use figs/Commits distribution.png>
 Package pdftex.def Info: figs/Commits distribution.png  used on input line 65.
 (pdftex.def)             Requested size: 433.62335pt x 216.81166pt.
- [23]
-<figs/changes_len_dist.png, id=451, 1445.4pt x 722.7pt>
+ [24]
+<figs/changes_len_dist.png, id=483, 1445.4pt x 722.7pt>
 File: figs/changes_len_dist.png Graphic file (type png)
 <use figs/changes_len_dist.png>
 Package pdftex.def Info: figs/changes_len_dist.png  used on input line 71.
 (pdftex.def)             Requested size: 433.62335pt x 216.81166pt.
-<figs/Commit num files distribution.png, id=454, 1445.4pt x 722.7pt>
+<figs/Commit num files distribution.png, id=486, 1445.4pt x 722.7pt>
 File: figs/Commit num files distribution.png Graphic file (type png)
 <use figs/Commit num files distribution.png>
 Package pdftex.def Info: figs/Commit num files distribution.png  used on input line 78.
 (pdftex.def)             Requested size: 433.62335pt x 216.81166pt.
- [24 <./figs/Commits distribution.png> <./figs/changes_len_dist.png>] [25 <./figs/Commit num files distribution.png>] [26] [27]
-<figs/Commit num files distribution_comchron.png, id=488, 1445.4pt x 722.7pt>
+ [25 <./figs/Commits distribution.png> <./figs/changes_len_dist.png>] [26 <./figs/Commit num files distribution.png>] [27] [28]
+<figs/Commit num files distribution_comchron.png, id=519, 1445.4pt x 722.7pt>
 File: figs/Commit num files distribution_comchron.png Graphic file (type png)
 <use figs/Commit num files distribution_comchron.png>
 Package pdftex.def Info: figs/Commit num files distribution_comchron.png  used on input line 122.
@@ -2299,33 +2298,33 @@ Package pdftex.def Info: figs/Commit num files distribution_comchron.png  used o
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-<figs/changes_len_dist_comchron.png, id=489, 1445.4pt x 722.7pt>
+<figs/changes_len_dist_comchron.png, id=520, 1445.4pt x 722.7pt>
 File: figs/changes_len_dist_comchron.png Graphic file (type png)
 <use figs/changes_len_dist_comchron.png>
 Package pdftex.def Info: figs/changes_len_dist_comchron.png  used on input line 148.
 (pdftex.def)             Requested size: 433.62335pt x 216.81166pt.
-[28 <./figs/Commit num files distribution_comchron.png>]
-<figs/Commits distribution_comchron.png, id=495, 1445.4pt x 722.7pt>
+[29 <./figs/Commit num files distribution_comchron.png>]
+<figs/Commits distribution_comchron.png, id=526, 1445.4pt x 722.7pt>
 File: figs/Commits distribution_comchron.png Graphic file (type png)
 <use figs/Commits distribution_comchron.png>
 Package pdftex.def Info: figs/Commits distribution_comchron.png  used on input line 154.
 (pdftex.def)             Requested size: 433.62335pt x 216.81166pt.
- [29 <./figs/changes_len_dist_comchron.png>] [30 <./figs/Commits distribution_comchron.png>] [31] [32] [33] [34] [35] [36] [37] [38] [39] [40] [41]) [42] [43]
+ [30 <./figs/changes_len_dist_comchron.png>] [31 <./figs/Commits distribution_comchron.png>] [32] [33] [34] [35] [36] [37] [38] [39] [40] [41] [42]) [43] [44]
 \openout2 = `chapters/chapter4.aux'.
 
  (./chapters/chapter4.tex
 Chapter 4.
-) [44
+[45
 
 
 
 
-]
+] [46] [47] [48] [49]) [50] [51]
 \openout2 = `chapters/chapter5.aux'.
 
  (./chapters/chapter5.tex
 Chapter 5.
-) [45
+) [52
 
 
 
@@ -2335,16 +2334,16 @@ Chapter 5.
 
  (./chapters/chapter6.tex
 Chapter 6.
-) [46
+) [53
 
 
 
 
-] [47
+] [54
 
 
 
-] [48] [49] (./thesis.aux (./chapters/abstract.aux) (./chapters/chapter1.aux) (./chapters/chapter2.aux) (./chapters/chapter3.aux) (./chapters/chapter4.aux) (./chapters/chapter5.aux) (./chapters/chapter6.aux))
+] [55] [56] [57] (./thesis.aux (./chapters/abstract.aux) (./chapters/chapter1.aux) (./chapters/chapter2.aux) (./chapters/chapter3.aux) (./chapters/chapter4.aux) (./chapters/chapter5.aux) (./chapters/chapter6.aux))
  ***********
 LaTeX2e <2023-11-01> patch level 1
 L3 programming layer <2024-02-20>
@@ -2354,24 +2353,24 @@ L3 programming layer <2024-02-20>
 LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 
 Package rerunfilecheck Info: File `thesis.out' has not changed.
-(rerunfilecheck)             Checksum: 727E5955B5712836D0DD68C5FAE09BDB;9353.
+(rerunfilecheck)             Checksum: 2027E2BC656B0DD8557D7F92D1F4540B;10111.
 Package logreq Info: Writing requests to 'thesis.run.xml'.
 \openout1 = `thesis.run.xml'.
 
  ) 
 Here is how much of TeX's memory you used:
- 29407 strings out of 475477
- 503559 string characters out of 5784403
+ 29447 strings out of 475477
+ 504633 string characters out of 5784403
  1939187 words of memory out of 5000000
- 50894 multiletter control sequences out of 15000+600000
+ 50915 multiletter control sequences out of 15000+600000
  605601 words of font info for 95 fonts, out of 8000000 for 9000
  475 hyphenation exceptions out of 8191
- 72i,17n,117p,1679b,2300s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 72i,17n,117p,2415b,2316s stack positions out of 10000i,1000n,20000p,200000b,200000s
  </home/nikita/.texlive/texmf-var/fonts/pk/ljfour/lh/lh-t2a/larm1440.600pk></usr/share/texmf-dist/fonts/type1/public/tempora/Tempora-Bold.pfb></usr/share/texmf-dist/fonts/type1/public/tempora/Tempora-Italic.pfb></usr/share/texmf-dist/fonts/type1/public/tempora/Tempora-Regular.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on thesis.pdf (50 pages, 542061 bytes).
+Output written on thesis.pdf (58 pages, 561605 bytes).
 PDF statistics:
- 772 PDF objects out of 1000 (max. 8388607)
- 639 compressed objects within 7 object streams
- 146 named destinations out of 1000 (max. 500000)
- 451 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 849 PDF objects out of 1000 (max. 8388607)
+ 707 compressed objects within 8 object streams
+ 165 named destinations out of 1000 (max. 500000)
+ 483 words of extra memory for PDF output out of 10000 (max. 10000000)
 

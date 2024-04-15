@@ -1,7 +1,7 @@
-PWD /home/nikita/thesis_tex/thesis_template
+PWD /home/nikita/thesis
 INPUT /usr/share/texmf-dist/web2c/texmf.cnf
 INPUT /var/lib/texmf/web2c/pdftex/pdflatex.fmt
-INPUT /home/nikita/thesis_tex/thesis_template/thesis.tex
+INPUT /home/nikita/thesis/thesis.tex
 OUTPUT thesis.log
 INPUT /usr/share/texmf-dist/tex/latex/extsizes/extreport.cls
 INPUT /usr/share/texmf-dist/tex/latex/extsizes/extreport.cls
