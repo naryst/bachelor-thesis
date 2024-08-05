@@ -1,0 +1,264 @@
+\chapter{Evaluation and Discussion}\label{chap:eval}
+The main objective of this chapter is to describe the final results of the trained models. It includes a comparison of the results of all the experiments described in the implementation chapter~\ref{chap:impl}. The analysis includes statistical evaluations for the quality of generated commit messages with BERTScore and BLEU metrics. In addition to evaluating the quality of generation. I also assessed the length of the messages, emphasizing the necessity for the model to produce brief and concise text comparable to that authored by humans. One more important aspect of trained models is the time and memory efficiency at inference time. Taking into account the task context, it is important that commit messages be generated quickly and with minimal computation. Therefore, comparing the efficiency of different models is essential when deciding on the best model to use in production.
+In discussing the data used for the evaluation, I used two distinct datasets. One is the test split from the CommitChronicle dataset, and another is the dataset parsed from GitHub.
+Considering the evaluation using the parsed data, I did not include the timestamps for commits while collecting the data. Therefore, it is impossible to access the quality of CodeT5+ with the retrieval on this dataset, as it requires previous commits from the same repository.  
+\setcounter{table}{7}
+\section{BERTScore analysis}\label{sec:bertscore_res}
+
+\begin{table}[h]
+    \centering
+    \caption{Mean BERTScore Metric With Std}\label{tab:bert_res}
+    \renewcommand{\arraystretch}{1.5} % Adjusts the row height
+    \begin{tabular}{| l | c | c | c | c |} % chktex 44
+    \hline % chktex 44
+    \textbf{Model} & \textbf{Mean} & \textbf{Std} & \textbf{Mean parsed} & \textbf{Std parsed} \\
+    \hline % chktex 44
+    CodeT5+ 220M & 0.583 & 0.110 & 0.558 & 0.108 \\ 
+    \hline
+    CodeT5+ 770M & \textbf{0.608} & 0.116 & \textbf{0.581} & 0.119 \\ 
+    \hline
+    CodeT5+ with file attention & 0.600 & 0.112 & 0.572 & 0.112 \\
+    \hline 
+    \multirow{2}{*}{\begin{tabular}[c]{@{}l@{}}CodeT5+ with file attention \\ single commit train\end{tabular}} & \multirow{2}{*}{0.595} & \multirow{2}{*}{0.112} & \multirow{2}{*}{0.570} & \multirow{2}{*}{0.114} \\ 
+    & & & & \\
+    \hline
+    CodeT5+ with retrieval & 0.603 & 0.115 & - & - \\
+    \hline
+    \hline
+    JetBrains CodeT5 & 0.600 & 0.112 & 0.569 & 0.114 \\ 
+    \hline
+    \end{tabular}
+\end{table}
+
+Table~\ref{tab:bert_res} represents the mean value and standard deviation of the BERTScore. It was measured for the test set of Commit Chronicle and the manually parsed data.  As demonstrated in the table, CodeT5+ with 770 million parameters achieves the highest performance on both datasets. This leads to the conclusion that model scaling implies better semantic extraction from the code changes. 
+Considering the comparison of two different CodeT5+ training setups with file attention, the metric reports that the use of a single commit per batch during training leads to a slight degradation of the metric. 
+Both experiments with the addition of an additional module to the base CodeT5+ increased the quality of the generated messages. 
+The results for the parsed data on average are worse than in the results on the CommitChronicle. One of the possible reasons for this is the difference in the filtration process. The authors in~\cite{eliseeva2023commit} implemented rigorous filtering on the data. In contrast, I did not apply any quality-based filters to my data, with the exception of setting an upper bound on the length of the message. This may cause the presence of messages with questionable meaning semantics in my data. Therefore, the quality of the BERTScore decreased. 
+
+\section{BLEU score analysis}\label{sec:bleu_res}
+\begin{table}[h]
+    \centering
+    \caption{Mean BLEU Score Metric With Std}\label{tab:bleu_res}
+    \renewcommand{\arraystretch}{1.5} % Adjusts the row height
+    \begin{tabular}{| l | c | c | c | c |} % chktex 44
+    \hline % chktex 44
+    \textbf{Model} & \textbf{Mean} & \textbf{Std} & \textbf{Mean parsed} & \textbf{Std parsed} \\
+    \hline % chktex 44
+    CodeT5+ 220M & 3.697 & 2.992 & 2.437 & 2.368 \\ 
+    \hline
+    CodeT5+ 770M & \textbf{4.737} & 3.472 & \textbf{3.291} & 2.918 \\ 
+    \hline
+    CodeT5+ with file attention & 3.729 & 2.761 & 2.438 & 2.166 \\
+    \hline 
+    \multirow{2}{*}{\begin{tabular}[l]{@{}l@{}}CodeT5+ with file attention \\ single commit train\end{tabular}} & \multirow{2}{*}{3.367} & \multirow{2}{*}{2.610} & \multirow{2}{*}{2.117} & \multirow{2}{*}{2.096} \\ 
+    & & & & \\
+    \hline
+    CodeT5+ with retrieval & 4.409 & 1.985 & - & -\\
+    \hline
+    \hline
+    JetBrains CodeT5 & 3.994 & 3.103 & 2.610 & 2.732\\ 
+    \hline
+    \end{tabular}
+\end{table}
+
+Table~\ref{tab:bleu_res} reports the BLEU metric for all models trained in my work. The performance of models with BLEU is correlated with the BERTScore. CodeT5+ with 770 million parameters shows the best results in the CommitChronicle test set and parsed data. Alterations in this metric were observed in the CodeT5+ with file attention, where its performance declined and became less than that of the JetBrains model. Given the configuration of CodeT5+ with file attention, where each batch consisted of only one commit, its performance was even lower than that of CodeT5 220M, which served as its backbone model.
+An important detail about the statistics collected for the BLEU metric is the standard deviation of the data. The metric is too variable and therefore not robust. In some cases, the value of std is almost equal to the mean value.
+This instability in BLEU scores raises doubts about its relevance for model comparisons. Therefore, to make a fair comparison of the abilities of the models to imitate human-written commit messages, I need to collect another metric. 
+
+\begin{table}[h]
+    \centering
+    \caption{Mean B-Norm Score Metric With Std}\label{tab:bleunorm_res}
+    \renewcommand{\arraystretch}{1.5} % Adjusts the row height
+    \begin{tabular}{| l | c | c | c | c |} % chktex 44
+    \hline % chktex 44
+    \textbf{Model} & \textbf{Mean} & \textbf{Std} & \textbf{Mean parsed} & \textbf{Std parsed} \\
+    \hline % chktex 44
+    CodeT5+ 220M & 0.129 & 0.035 & 0.099 & 0.031 \\ 
+    \hline
+    CodeT5+ 770M & \textbf{0.157} & 0.040 & \textbf{0.128} &  0.037 \\ 
+    \hline
+    CodeT5+ with file attention & 0.146 & 0.038 & 0.114 & 0.034 \\
+    \hline 
+    \multirow{2}{*}{\begin{tabular}[l]{@{}l@{}}CodeT5+ with file attention \\ single commit train\end{tabular}} & \multirow{2}{*}{0.141} & \multirow{2}{*}{0.038} & \multirow{2}{*}{0.113} & \multirow{2}{*}{0.035} \\ 
+    & & & & \\
+    \hline
+    CodeT5+ with retrieval & 0.151 & 0.022 & - & -\\
+    \hline
+    \hline
+    JetBrains CodeT5 & 0.147 & 0.038 & 0.118 & 0.036\\ 
+    \hline
+    \end{tabular}
+\end{table}
+As a more robust version of the BLEU score, I took a B-norm metric, which is a normalized version of BLEU. This metric was used in the original work of JetBrains~\cite{eliseeva2023commit} and is considered the best version of BLEU specifically for the task of generating commit messages. From the perspective of this metric, a scaled version of CodeT5+ outperforms all other models. Every experiment involving additional modules for the base CodeT5+ model enhanced the metric.
+As described in the methodology section~\ref{subsec:bleu}, the BLEU metric in the calculation focuses only on the exact match of n-grams in the generated text. Thus, from the point of this metric the most important model to consider is CodeT5+ with the retrieval. The model with retrieval additionally gets the most similar commit from the database and the previous commit from the same repository to the input. Using this additional information model should implicitly learn how to generate the message in the same style. Therefore, the retrieval model should have better BLEU results than others, as it was trained to write the messages in the same words as humans with the help of additional human-written samples. The results of the table indicate that the retrieval model achieves the top 2 score with B-norm 0.151. Moreover, the variability of the metric for this model is considerably less compared to all other models. This makes this method the most robust for generating qualitative messages. Based on these findings, it can be inferred that the retrieval model was effectively trained and achieved the desirable results in the evaluation. 
+
+\section{Generation length analysis}
+Original messages from the CommitChronicle dataset are short and concise. Therefore, after the fine-tuning the models should be able to describe all the code modifications in a short text. To access the ability of the models to do this, I measured the number of tokens in the models responses. Table~\ref{tab:len_res} summarizes the results of the collected statistics. From the table is visible that almost all the models have approximately identical lengths of the generated messages. The results for the base CodeT5+ are longer on average. This may mean that the model did not learn to construct the concise messages. 
+The JetBrains-trained model produces more concise messages compared to other models. This could be attributed to the special tokens added to the input data and the output designed for my models.
+
+
+\begin{table}[h]
+    \centering
+    \caption{Mean Message Length With Std}\label{tab:len_res}
+    \renewcommand{\arraystretch}{1.5} % Adjusts the row height
+    \begin{tabular}{| l | c | c | c | c |} % chktex 44
+    \hline % chktex 44
+    \textbf{Model} & \textbf{Mean} & \textbf{Std} & \textbf{Mean parsed} & \textbf{Std parsed} \\
+    \hline % chktex 44
+    CodeT5+ 220M & 13.268 & 6.298 & 12.598 & 5.594 \\ 
+    \hline
+    CodeT5+ 770M & 12.392 & 5.269 & 12.450 & 4.864 \\ 
+    \hline
+    CodeT5+ with file attention & 12.298 & 5.383 & 12.154 & 4.221 \\
+    \hline 
+    \multirow{2}{*}{\begin{tabular}[l]{@{}l@{}}CodeT5+ with file attention \\ single commit train\end{tabular}} & \multirow{2}{*}{11.705} & \multirow{2}{*}{5.049} &  \multirow{2}{*}{11.402} &  \multirow{2}{*}{3.612} \\ 
+    & & & &\\
+    \hline
+    CodeT5+ with retrieval & 12.272 & 5.410 & - & - \\
+    \hline
+        \hline
+    JetBrains CodeT5 & 10.913 & 4.22 & 10.510 & 4.269 \\ 
+    \hline
+    \end{tabular}
+\end{table}
+
+
+\section{Models speed analysis}
+To access the model generation speed, I measured the time to generate the commit messages for a batch. Batched measurements provide a comprehensive view of the efficiency with which the model processes multiple inputs simultaneously. This measurement correlates with real-world usage scenarios where models often handle numerous tasks concurrently. This approach captures the model's ability to handle workload variations and optimize computational resources effectively.
+The batch for all models includes 20 samples, except for the retrieval model, where the batch consists of 64 sequences. 
+The results of the measurement of the generation time are presented in Table~\ref{tab:time_res} 
+The primary focus when evaluating the generation speed of the models is to explore the impact of additional modules added to the base version of CodeT5+ on the generation speed.
+\begin{table}[h]
+    \centering
+    \caption{Mean Evaluation Time With Std}\label{tab:time_res}
+    \renewcommand{\arraystretch}{1.5} % Adjusts the row height
+    \begin{tabular}{| l | c | c | c | c |} % chktex 44
+    \hline % chktex 44
+    \textbf{Model} & \textbf{Mean} & \textbf{Std} & \textbf{Mean parsed} & \textbf{Std parsed} \\
+    \hline % chktex 44
+    CodeT5+ 220M & 1.508 & 0.565 & 1.409 & 0.604 \\ 
+    \hline
+    CodeT5+ 770M & 2.919 & 0.873 & 2.756 &  1.057\\ 
+    \hline
+    CodeT5+ with file attention & 1.626 & 0.421 & 1.353 & 0.459 \\
+    \hline 
+    \multirow{2}{*}{\begin{tabular}[l]{@{}l@{}}CodeT5+ with file attention \\ single commit train\end{tabular}} & \multirow{2}{*}{1.461} & \multirow{2}{*}{0.413} & \multirow{2}{*}{1.168} &  \multirow{2}{*}{3.451}\\ 
+    & & & & \\
+    \hline
+    CodeT5+ with retrieval & 5.147 & 1.626 & - & - \\
+    \hline
+        \hline
+    JetBrains CodeT5 & \textbf{1.081} & 0.300 & \textbf{1.042} & 0.314 \\ 
+    \hline
+    \end{tabular}
+\end{table}
+As indicated in the table, the time to process a single batch did not increase too much for all the experiments with additional modules. The computational overhead is less than 150 milliseconds for the batch of 20 samples. Considering the model with the best performance, JetBrains CodeT5 showed significantly faster batch processing. One of the reasons for this is the number of parameters, as the JetBrains model has only 220M of them. When comparing the JB model to the base code T5+, it shows superior performance due to the lower average number of tokens generated by the model.
+Two models considered in the table showed the result that is significantly different from all the others, the scaled version of CodeT5+ and the version with the retrieval. The problem of the retrieval model is it's bottleneck on the retrieval from the FAISS index. Big CodeT5+ performs worse because of its number of parameters. However, a duration of 2.9 seconds to generate messages for 20 commits is considered efficient, since a typical software developer takes about 15-20 seconds to compose one.
+
+
+\section{Results for the specific programming languages}
+
+\begin{table}[h]
+    \centering
+    \caption{Performance for the specific programming language}
+    \label{tab:res_pl}
+    \begin{tabular}{|l|c|c|c|c|}
+        \hline
+        \textbf{} & \textbf{BERT\_220M} & \textbf{BERT\_770M} & \textbf{BLEU\_220M} & \textbf{BLEU\_770M} \\
+        \hline
+        C           & 0.583 & 0.604 & 4.082 & 4.807 \\
+        \hline
+        C\#         & 0.575 & 0.595 & 2.065 & 3.077 \\
+        \hline
+        C++         & 0.582 & 0.603 & 3.271 & 4.448 \\
+        \hline
+        Dart        & 0.6   & 0.615 & 5.356 & 5.971 \\
+        \hline
+        Elixir      & 0.583 & 0.612 & 4.234 & 5.883 \\
+        \hline
+        Go          & 0.577 & 0.602 & 2.224 & 3.2 \\
+        \hline
+        Groovy      & 0.607 & 0.636 & 5.79 & 7.829 \\
+        \hline
+        Java        & 0.585 & 0.606 & 2.972 & 4.003 \\
+        \hline
+        JavaScript  & 0.586 & 0.61  & 3.677 & 4.743 \\
+        \hline
+        Kotlin      & 0.572 & 0.595 & 1.45  & 2.11 \\
+        \hline
+        Nix         & 0.639 & 0.663 & 3.323 & 4.697 \\
+        \hline
+        Objective-C & 0.569 & 0.599 & 1.442 & 2.411 \\
+        \hline
+        PHP         & 0.583 & 0.611 & 3.855 & 5.282 \\
+        \hline
+        Python      & 0.586 & 0.609 & 4.143 & 5.334 \\
+        \hline
+        Ruby        & 0.581 & 0.607 & 3.837 & 5.071 \\
+        \hline
+        Rust        & 0.579 & 0.603 & 3.768 & 5.051 \\
+        \hline
+        Shell       & 0.591 & 0.623 & 4.246 & 5.617 \\
+        \hline
+        Smalltalk   & 0.543 & 0.571 & 1.047 & 1.857 \\
+        \hline
+        Swift       & 0.579 & 0.603 & 2.457 & 3.5 \\
+        \hline
+        TypeScript  & 0.589 & 0.611 & 3.95  & 4.878 \\
+        \hline
+    \end{tabular}
+\end{table}
+
+The CommitChronicle dataset collects the commits in the 20 popular programming languages. To access the performance for any specific language, I collected separate metrics with BLEU and BERTScore for any language. As models for comparison, I took the base version of the CodeT5+ model and its scaled version. The results of the metric collection are presented in Table~\ref{tab:res_pl}. The table demonstrates that the scaled version of CodeT5+ outperforms the base version in all programming languages.
+The worst results are achieved for the Smaltalk programming language. The unique syntax of this language and the small number of examples in the training data make it difficult for the models to learn to extract the semantics from the source code. Considering the programming languages with which the model performed best, Nix shows the best results in terms of BERTScore. One of the possible reasons for this may be the declarative nature of this language. 
+However, all conclusions about the quality of models in certain languages are just guesses. The number of examples for each language in the test set is insufficient to draw any conclusions. 
+
+\section{Results discussion}
+After considering different aspects of the model performance and collecting the metrics results, I would like to finalize the results of my work and assess the effectiveness and outcomes of the experiments carried out. 
+
+\subsection{Result of adding the special tokens}
+My experiment with special tokens involved changing the format of input and output sequences according to the format specified in Section~\ref{subsec:structure_of_the_data}. According to my initial idea, the model should better understand the format of code changes with special tokens, representing the start and the end of the modified code line. The result of this experiment can be observed by comparing the base CodeT5+ and the CodeT5 trained in~\cite{eliseeva2023commit}. These models were fine-tuned using the same training data and utilized the same set of training hyperparameters. The only difference between these approaches is that the model trained by JetBrains received the code changes in a raw format. 
+According to the metrics statistics, the JetBrains model works better for all cases. This leads to the conclusion that the addition of special tokens does not boost the model's understanding of the code changes. Furthermore, this modification leads to the degradation of the quality of generated commit messages. 
+
+\subsection{Results of the model scaling}
+In modern deep learning research, it is a well-known fact that increasing the number of parameters in the transformer model increases its performance in various tasks. In my work, I experimented with scaling CodeT5+. For this purpose, I tested the version of the model with 770 million parameters and accessed performance improvements compared to the base version. 
+The evaluation results indicate that this scaling enables the model to outperform all other experiments. The main drawback of this model is the increased inference time. The batch processing time nearly doubled after model scaling. However, even three seconds to process the batch of 20 samples is efficient enough to use this solution in real-world scenarios. Therefore, I can conclude that this experiment achieved the stated objective. Scaling the model took advantage of its ability to capture code modification semantics and improved the quality of generated commit messages. 
+
+
+\subsection{Results of adding the retrieval module}
+The main goal of this experiment was to extend the ability of the model to adapt to the commit messaging style specific to a certain field of software development or a particular repository. For this purpose, I retrieved the previous commit message from the same repository and the most similar message from the database. 
+The primary measure used to evaluate the model's adaptation to the specific messaging style is the BLEU score. This metric quantifies the exact match of n-grams, thus indicating how well the style of the produced message matches the original one. 
+The results of Section~\ref{sec:bleu_res} show that the retrieval model outperforms all models except the CodeT5+ with 770 million parameters. Furthermore, the same situation holds for the BERTScore metric statistics described in Section~\ref{sec:bertscore_res}. Therefore, it is evident that the model's training was effective, leading to improved performance. However, there is still room for improvement in this method. For example, there is still a bottleneck in the retrieval part of the model. Another possible drawback is that the retrieved messages are used only as raw text, however, there exist some advanced methods like RACE~\cite{shi2022race} where the retrieved context is used on the embeddings level.  
+
+\subsection{Result of training file attention model with single commit}
+The main aim of this experiment was to investigate how batched training affects gradient flow through the specific module responsible for estimating the utility of files. While constructing the architecture of the file attention model presented in Section~\ref{subsec:fileattn_arch_details}, I came up with the possible problem of gradient backpropagation. Due to the heterogeneous nature of commits, there may be a problem with properly training the MLP block, which calculates the dominance score among the commit files.
+To determine whether this issue affects the training of this architecture, I also conducted training on a model variant that included only a single commit per training batch. This approach ensures data homogeneity. By evaluating the performance of both model variants, I will be able to make a conclusive decision. By analyzing the results of the BERTScore and BLEU score, it is visible that the model trained in a batched format performs better than the variant with a single commit. This leads to the conclusion that the batches do not break the gradient flow for the intermediate MLP block. The underperformance of the variant trained with a single commit could be caused by a lack of generality, as the model has seen only one sample per gradient step.
+
+\subsection{Result of adding the file attention module}
+Goal of this section is to indicate the overall performance of the model with a file attention mechanism. When comparing the file attention model with the base model, it outperforms it in all metrics. But since the file attention model was initially based on the fine-tuned CodeT5 +, this may be just because of the second epoch training. Therefore, this statistic is insufficient for a definitive conclusion. 
+When comparing the file attention model with the CodeT5 trained in the Jetbrains work, the difference between them is statistically insignificant for all metrics. The base CodeT5 was trained for one epoch, and the file attention model was trained for one epoch as a base CodeT5+ model and one more epoch with a file attention mechanism added and a frozen encoder. Taking this into account, base CodeT5 outperforms the file attention module. One potential explanation could be the ineffective use of additional special tokens, and another could be the poor performance of the file attention module.
+In discussing the concept of the file attention mechanism, it was stated that the primary objective of this approach is to enhance the model's performance for commits involving multiple files. To access how well this method performed, I collected the BERTScore statistics for the commit sample data sets with several files. CommitChronicle dataset includes commits with up to 16 modified files. To have only big commits I filtered out the samples with less than 14 files changed in the commits and came up with approximately 3000 samples. For the parsed data, I took the commits with more than six files changed to get nearly the same amount of data. BERTScore results for these data subsets are presented in Table~\ref{tab:big_commits_bert}.
+The table indicates that, for the CommitChronicle subset, file attention outperforms the JetBrains CodeT5. For the parsed data, the situation is the opposite. Thus, a definitive conclusion cannot be drawn regarding the efficacy of the file attention model for large commits.
+Summarizing the evaluation of the file attention model, the outcomes of this experiment are unclear and require further research.
+\begin{table}[h]
+    \centering
+    \caption{BERTScore for big commits}\label{tab:big_commits_bert}
+    \renewcommand{\arraystretch}{1.5} % Adjusts the row height
+    \begin{tabular}{| l | c | c | c | c |} % chktex 44
+    \hline % chktex 44
+    \textbf{Experiment} & \textbf{Mean Value} & \textbf{Std} & \textbf{Mean parsed} & \textbf{Std parsed} \\
+    \hline % chktex 44
+    codeT5+ 220M & 0.559 & 0.105 & 0.584 & 0.130 \\ 
+    \hline
+    codeT5+ 770M & 0.587 & 0.113 & 0.614 & 0.143 \\ 
+    \hline
+    codeT5+ with file attention & 0.581 & 0.104 & 0.587 & 0.123 \\
+    \hline 
+    \multirow{2}{*}{\begin{tabular}[l]{@{}l@{}}codeT5+ with file attention \\ single commit train\end{tabular}} & \multirow{2}{*}{0.569} & \multirow{2}{*}{0.102} & \multirow{2}{*}{0.583} & \multirow{2}{*}{0.127} \\ 
+    & & & & \\
+    \hline
+        \hline
+    JetBrains codeT5 & 0.577 & 0.108 & 0.602 & 0.139 \\ 
+    \hline
+    \end{tabular}
+\end{table}
